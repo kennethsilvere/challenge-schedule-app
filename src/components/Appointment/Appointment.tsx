@@ -46,7 +46,7 @@ const Appointment: FunctionComponent<Props> = (props: Props) => {
             Date: <span className='data-value'>{props.data.requestedDate}</span>
           </p>
           <p>
-            Reason: <p className='data-value'>{props.data.requestReason}</p>
+            Reason: <br/><span className='data-value'>{props.data.requestReason}</span>
           </p>
           {(props.data.status === "new" ||
             props.data.status === "confirmed") && (
