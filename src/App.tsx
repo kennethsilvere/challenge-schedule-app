@@ -1,7 +1,8 @@
-import './App.css';
+import "./App.css"
 
-import NavBar from './components/NavBar';
-import Sidebar from './components/Sidebar';
+import NavBar from "./components/NavBar"
+import Sidebar from "./components/Sidebar"
+import AppointmentPage from "./pages/Appointments-page"
 
 function App() {
   return (
@@ -9,14 +10,14 @@ function App() {
       <header>
         <NavBar />
       </header>
-      <div className="container">
+      <div className='container'>
         <Sidebar />
         <main>
-          <h2>Replace me with your own code!</h2>
+          <AppointmentPage />
         </main>
       </div>
     </>
-  );
+  )
 }
 
-export default App;
+export default App
