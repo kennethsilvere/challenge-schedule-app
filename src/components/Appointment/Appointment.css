@@ -1,8 +1,20 @@
 .appointment-container {
- display: flex;
- flex-flow: row wrap;
+  display: flex;
+  flex-flow: row wrap;
 }
 
 .appointment-detail {
- width: 33%;
+  width: 33%;
+}
+
+p {
+  font-weight: bold;
+}
+
+.data-value {
+  font-weight: normal;
+}
+
+.cancel-btn {
+  margin-left: 0.5rem;
 }

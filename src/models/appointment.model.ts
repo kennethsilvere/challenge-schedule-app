@@ -1,5 +1,5 @@
 export type AppointmentModel = {
-  id: string;
+  id: string
   requestedDate: string
   requestReason: string
   patientID: string
@@ -10,4 +10,5 @@ export type AppointmentModel = {
   patientImage: string
   assignedDoctorName: string
   assignedDoctorImage: string
+  cancellationReason: string
 }
