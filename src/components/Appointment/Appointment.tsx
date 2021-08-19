@@ -13,14 +13,18 @@ const Appointment: FunctionComponent<Props> = (props: Props) => {
   const appointmentCtx = useContext(AppointmentContext)
 
   const cancelApppointment = () => {
-    const updatedAppointments = appointmentCtx.allAppointments.map((a) => {
-      if (props.data.id === a.id) {
-        a.status = "cancelled"
-        a.cancellationReason = "Cancelled"
-      }
-      return a
+    fetch(`/api-v1/appointments/${props.data.id}`, {
+      method: "DELETE",
+    }).then((response) => {
+      const updatedAppointments = appointmentCtx.allAppointments.map((a) => {
+        if (props.data.id === a.id) {
+          a.status = "cancelled"
+          a.cancellationReason = "Cancelled"
+        }
+        return a
+      })
+      appointmentCtx.setAllAppointments(updatedAppointments)
     })
-    appointmentCtx.setAllAppointments(updatedAppointments)
   }
   return (
     <div className='appointment-element'>
@@ -58,6 +62,14 @@ const Appointment: FunctionComponent<Props> = (props: Props) => {
               Reason for Cancellation:{" "}
               <span className='data-value'>
                 {props.data.cancellationReason}
+              </span>
+            </p>
+          )}
+          {(props.data.status === "completed" && props.data.statusReason) && (
+            <p>
+              Diagnosis:{" "}
+              <span className='data-value'>
+                {props.data.statusReason}
               </span>
             </p>
           )}
