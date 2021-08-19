@@ -14,7 +14,9 @@ export const AppointmentContext = createContext<AppointmentContextType>({
 
 const AppointmentContextProvider: React.FC = (props) => {
   const [isLoading, setIsLoading] = useState<boolean>(true)
-  const [appointmentsData, setAppointmentsData] = useState<AppointmentModel[]>([])
+  const [appointmentsData, setAppointmentsData] = useState<AppointmentModel[]>(
+    []
+  )
 
   const setAllAppointmentsHandler = (data: AppointmentModel[]) =>
     setAppointmentsData(data)
@@ -63,7 +65,7 @@ const AppointmentContextProvider: React.FC = (props) => {
           requestedDate: new Date(a.requestedDate).toDateString(),
           patientName: patient["name"],
           patientImage: patient["photoURL"],
-          assignedDoctorName: doctor ? doctor["name"] : 'Unassigned',
+          assignedDoctorName: doctor ? doctor["name"] : "Unassigned",
           assignedDoctorImage: doctor ? doctor["photoURL"] : undefined,
         }
       })

@@ -65,12 +65,10 @@ const Appointment: FunctionComponent<Props> = (props: Props) => {
               </span>
             </p>
           )}
-          {(props.data.status === "completed" && props.data.statusReason) && (
+          {props.data.status === "completed" && props.data.statusReason && (
             <p>
               Diagnosis:{" "}
-              <span className='data-value'>
-                {props.data.statusReason}
-              </span>
+              <span className='data-value'>{props.data.statusReason}</span>
             </p>
           )}
         </div>
