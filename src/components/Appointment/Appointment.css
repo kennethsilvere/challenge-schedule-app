@@ -1,0 +1,8 @@
+.appointment-container {
+ display: flex;
+ flex-flow: row wrap;
+}
+
+.appointment-detail {
+ width: 33%;
+}

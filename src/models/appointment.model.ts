@@ -1,4 +1,5 @@
-export type Appointment = {
+export type AppointmentModel = {
+  id: string;
   requestedDate: string
   requestReason: string
   patientID: string

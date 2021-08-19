@@ -1,22 +1,22 @@
 import { createContext, useState, useEffect } from "react"
 
-import { Appointment } from "../models/appointment.model"
+import { AppointmentModel } from "../models/appointment.model"
 
 export type AppointmentContextType = {
-  allAppointments: Appointment[]
-  setAllAppointments: (data: Appointment[]) => void
+  allAppointments: AppointmentModel[]
+  setAllAppointments: (data: AppointmentModel[]) => void
 }
 
 export const AppointmentContext = createContext<AppointmentContextType>({
   allAppointments: [],
-  setAllAppointments: (data: Appointment[]) => {},
+  setAllAppointments: (data: AppointmentModel[]) => {},
 })
 
 const AppointmentContextProvider: React.FC = (props) => {
   const [isLoading, setIsLoading] = useState<boolean>(true)
-  const [appointmentsData, setAppointmentsData] = useState<Appointment[]>([])
+  const [appointmentsData, setAppointmentsData] = useState<AppointmentModel[]>([])
 
-  const setAllAppointmentsHandler = (data: Appointment[]) =>
+  const setAllAppointmentsHandler = (data: AppointmentModel[]) =>
     setAppointmentsData(data)
 
   const context: AppointmentContextType = {
@@ -24,7 +24,7 @@ const AppointmentContextProvider: React.FC = (props) => {
     setAllAppointments: setAllAppointmentsHandler,
   }
 
-  let allAppointmentsList: Appointment[], patients: any[], doctors: any[]
+  let allAppointmentsList: AppointmentModel[], patients: any[], doctors: any[]
 
   useEffect(() => {
     const getAppointments = fetch("/api-v1/appointments").then((response) =>
@@ -63,7 +63,7 @@ const AppointmentContextProvider: React.FC = (props) => {
           requestedDate: new Date(a.requestedDate).toDateString(),
           patientName: patient["name"],
           patientImage: patient["photoURL"],
-          assignedDoctorName: doctor ? doctor["name"] : undefined,
+          assignedDoctorName: doctor ? doctor["name"] : 'Unassigned',
           assignedDoctorImage: doctor ? doctor["photoURL"] : undefined,
         }
       })
