@@ -1,7 +1,7 @@
 import { FunctionComponent, useContext } from "react"
 
 import AppointmentsList from "../components/Appointments-list/Appointments-list"
-import { AppointmentModel } from "../models/appointment.model"
+import { useAppointmentsFilter } from "../hooks/use-appointments-filter"
 import { AppointmentContext } from "../store/appointments-context"
 
 import "./Appointments-page.css"
@@ -12,28 +12,16 @@ const AppointmentPage: FunctionComponent<Props> = (props: Props) => {
   const appointmentCtx = useContext(AppointmentContext)
   let loading = true
 
-  let newAppointments: AppointmentModel[] = [],
-    confirmedAppointments: AppointmentModel[] = [],
-    cancelledAppointments: AppointmentModel[] = [],
-    completedAppointments: AppointmentModel[] = []
+  const { processData } = useAppointmentsFilter()
 
-  const processData = () => {
-    newAppointments = appointmentCtx.allAppointments.filter(
-      (a) => a.status === "new"
-    )
-    confirmedAppointments = appointmentCtx.allAppointments.filter(
-      (a) => a.status === "confirmed"
-    )
-    cancelledAppointments = appointmentCtx.allAppointments.filter(
-      (a) => a.status === "cancelled"
-    )
-    completedAppointments = appointmentCtx.allAppointments.filter(
-      (a) => a.status === "completed"
-    )
-    loading = false
-  }
+  const {
+    newAppointments,
+    confirmedAppointments,
+    cancelledAppointments,
+    completedAppointments,
+  } = processData(appointmentCtx.allAppointments)
 
-  processData()
+  loading = false
 
   return (
     <div>
